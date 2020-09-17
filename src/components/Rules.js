@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import Button from './Button';
 
-
 const RulesStyled = styled.div`
   text-align: center;
+  .close-button {
+    margin-top: 2em;
+  }
   .rules-overlay {
     background: white;
+    padding: 4em 0;
     position: fixed;
     left: 0;
     right: 0;
@@ -15,33 +18,38 @@ const RulesStyled = styled.div`
     z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     h2 {
       color: #3B4262;
       text-transform: uppercase;
       font-weight: 700;
-      font-family: Arial;
       letter-spacing: -2px;
-      margin-bottom: 3em;
+      margin-bottom: 1em;
     }
   }
 `
 
 const Rules = () => {
 
-  function handleClick() {
-    console.log('ola ke ase');
-  }
+  const [visible, setVisible] = useState(false);
 
+  function handleToggleClick() {
+    setVisible(!visible);
+  }
 
   return (
     <RulesStyled>
-      <div className="rules-overlay">
-        <h2>Rules</h2>
-        <img src="./images/image-rules.svg" alt="Game Rules"/>
-      </div>
-      <Button onClick={handleClick} />
+      {
+        (visible) && (
+        <div className="rules-overlay">
+          <h2>Rules</h2>
+          <img src="./images/image-rules.svg" alt="Game Rules"/>
+          <img className="close-button" onClick={handleToggleClick} src="./images/icon-close.svg" alt="Close the game rules"/>
+        </div>
+        )
+      }
+      <Button onClick={handleToggleClick} />
     </RulesStyled>
   )
 }
