@@ -12,12 +12,23 @@ const ButtonStyled = styled.div`
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 2.5px;
+  :hover {
+    background: white;
+    color: #101a3f;
+  }
 `
 
-const Button = ({...props}) => {
+export const WhiteButton = styled(ButtonStyled)`
+  background: white;
+  color: #101a3f;
+  min-width: 220px;
+`
+
+
+const Button = ({ children, ...props}) => {
   return (
     <ButtonStyled {...props}>
-      Rules
+      {children}
     </ButtonStyled>
   )
 }

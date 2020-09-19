@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { ScoreContext } from '../App'
 
 const ScoreStyled = styled.div`
   background: white;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px;
   border-radius: 8px;
   width: 80px;
   small {
@@ -17,20 +18,29 @@ const ScoreStyled = styled.div`
   p {
     color: #565468;
     font-size: 40px;
+    text-align: center;
     margin: 0;
     font-weight: 700;
-    letter-spacing: -5px;
+    /* letter-spacing: -5px; */
     position: relative;
   }
-
-
+  @media screen and (min-width: 768px) {
+    padding: 10px 20px;
+    small {
+      font-size: 16px;
+    }
+    p {
+      font-size: 60px;
+    }
+  }
 `
 
 const Score = () => {
+  const { score } = useContext(ScoreContext);
   return (
     <ScoreStyled>
       <small>Score</small>
-      <p>12</p>
+      <p>{score}</p>
     </ScoreStyled>
   )
 }
